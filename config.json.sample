@@ -1,0 +1,7 @@
+{
+    "url" : "http://localhost:8086",
+    "token": "example_token",
+    "org": "org_example",
+    "bucket": "bucket_example",
+    "solar_url": "http://192.168.1.1"
+}
