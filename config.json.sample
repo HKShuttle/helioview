@@ -1,7 +1,11 @@
 {
-    "url" : "http://localhost:8086",
-    "token": "example_token",
-    "org": "org_example",
-    "bucket": "bucket_example",
-    "solar_url": "http://192.168.1.1"
+    "influxdb" : {
+        "url" : "http://influxdb2:8086",
+        "token": "example_admin_token",
+        "org": "example_organization_name",
+        "bucket": "example_bucket_name"
+    },
+    "solar_url": "http://192.168.1.1",
+    "fetchIntervalSeconds" : 15,
+    "suppressLog": false
 }

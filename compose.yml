@@ -7,6 +7,7 @@ services:
         condition: service_healthy
     networks:
       - internal
+    restart: always
   influxdb2:
     image: influxdb:2
     ports:
@@ -36,6 +37,7 @@ services:
       retries: 10
     networks:
       - internal
+    restart: always
   grafana:
     image: grafana/grafana
     ports:
@@ -46,6 +48,7 @@ services:
         target: /var/lib/grafana
     networks:
       - internal
+    restart: always
 secrets:
   influxdb2-admin-username:
     file: .env/influxdb2-admin-username
