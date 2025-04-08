@@ -2,13 +2,13 @@
 
 家庭の電力使用状況を収集・可視化するツールです。
 
-オムロン製太陽光発電計測ユニット "KU-MU1P-M" にアクセスし、 JSON 形式でデータを収集します。
+オムロン製太陽光発電計測ユニット "KU-MU1P-M" にアクセスし、 JSON 形式で取得できるデータを収集します。
 
 収集したデータは、 InfluxDB に蓄積し、 Grafana で可視化します。
 
 # 動作環境
 
-Docker Compose が動作し、太陽光発電の計測システムと疎通が取れる Linux 環境(WSL も可)で動作します。
+Docker Compose が動作し、 KU-MU1P-M と疎通が取れる Linux 環境(WSL も可)で動作します。
 
 # 起動準備
 
@@ -27,8 +27,8 @@ config.json ファイルの内容は、環境に合わせて書き換えます�
         "bucket": "InfluxDBのBucket"
     },
     "solarUrl": "KU-MU1P-MのURL",
-    "fetchIntervalSeconds" : 計測値の取得間隔（秒）,
-    "suppressLog": 計測値の取得成功時のログ出力を抑制するか（falseにするとログが出る）
+    "fetchIntervalSeconds" : "計測値の取得間隔（秒）",
+    "suppressLog": "計測値の取得成功時のログ出力を抑制するか（falseにするとログが出る）"
 }
 ```
 
