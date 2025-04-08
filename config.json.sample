@@ -5,7 +5,7 @@
         "org": "example_organization_name",
         "bucket": "example_bucket_name"
     },
-    "solar_url": "http://192.168.1.1",
+    "solarUrl": "http://192.168.1.1",
     "fetchIntervalSeconds" : 15,
     "suppressLog": false
 }
