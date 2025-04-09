@@ -1,11 +1,11 @@
 {
-    "influxdb" : {
-        "url" : "http://influxdb2:8086",
+    "influxdb": {
+        "url": "http://influxdb2:8086",
         "token": "example_admin_token",
         "org": "example_organization_name",
         "bucket": "example_bucket_name"
     },
     "solarUrl": "http://192.168.1.1",
-    "fetchIntervalSeconds" : 15,
+    "fetchIntervalSeconds": 15,
     "suppressLog": false
 }
