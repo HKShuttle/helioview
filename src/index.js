@@ -1,5 +1,6 @@
-import { InfluxDB, Point } from "@influxdata/influxdb-client";
+import {Point} from "@influxdata/influxdb-client";
 import config from '../config.json' with { type: 'json' };
+import {Database} from './database.js';
 
 async function main() {
     setInterval(fetchData, config.fetchIntervalSeconds * 1000);
@@ -13,7 +14,6 @@ async function fetchData() {
         const curCtDir = await response.json();
         response = await fetch(`${config.solarUrl}/asyncquery.cgi?type=PcsOne&pcsNumber=0`);
         const pcsOne = await response.json();
-
         await write(sysInfo, curCtDir, pcsOne);
     } catch (error) {
         console.error(new Date() + ": " + error);
@@ -21,8 +21,7 @@ async function fetchData() {
 }
 
 async function write(sysInfo, curCtDir, pcsOne) {
-    const influxdb = new InfluxDB({ url: config.influxdb.url, token: config.influxdb.token });
-    const writeApi = influxdb.getWriteApi(config.influxdb.org, config.influxdb.bucket);
+    const influxdb = Database.getInstance();
     const point_realtimedata = new Point('realtimedata')
         .floatField('Vu', sysInfo.mainSensorData.voltageU / 10)
         .floatField('Iu', sysInfo.mainSensorData.currentU / 10)
@@ -36,7 +35,7 @@ async function write(sysInfo, curCtDir, pcsOne) {
         .floatField('Vdc', pcsOne.onePcsInfoData.directVoltageArray[0] / 10)
         .floatField('Idc', pcsOne.onePcsInfoData.directCurrentArray[0] / 10);
 
-    writeApi.writePoint(point_realtimedata);
+    influxdb.write(point_realtimedata);
     if(!config.suppressLog){
         console.log(new Date() + ": Write OK");
     }
