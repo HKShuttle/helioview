@@ -46,7 +46,7 @@ export class Database {
     const response = await new OrgsAPI(this.#client).getOrgs({ request: { org: orgName } });
     const orgs = response.orgs ?? [];
     const matched = orgs.find(o => o.name === orgName);
-    if(matched){
+    if (matched) {
       return matched.id;
     }
     return null;
@@ -81,8 +81,7 @@ export class Database {
             type: "expire",
             everySeconds: 0,
             shardGroupDurationSeconds: 604800
-          }
-          ]
+          }]
         }
       });
     } catch (e) {
