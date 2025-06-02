@@ -65,10 +65,11 @@ export class Database {
   async createOrg(orgName) {
     try {
       await new OrgsAPI(this.#client).postOrgs({ body: { name: orgName } });
+      return true;
     } catch (e) {
-      console.error(e);
+      console.error(new Date() + " [ERROR} " + e);
+      return false;
     }
-    return await this.checkOrgs(orgName);
   }
 
   async createBucket(bucketName, orgID) {
@@ -84,9 +85,10 @@ export class Database {
           }]
         }
       });
+      return true;
     } catch (e) {
-      console.error(e);
+      console.error(new Date() + " [ERROR} " + e);
+      return false;
     }
-    return await this.checkBucket(bucketName);
   }
 }

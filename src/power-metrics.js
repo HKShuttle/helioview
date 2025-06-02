@@ -1,5 +1,5 @@
-import {Point} from "@influxdata/influxdb-client";
-import {Database} from './database.js';
+import { Point } from "@influxdata/influxdb-client";
+import { Database } from './database.js';
 import config from '../config.json' with { type: 'json' };
 
 export async function getPowerMetrics() {
@@ -12,8 +12,8 @@ export async function getPowerMetrics() {
         const pcsOne = await response.json();
         await write(sysInfo, curCtDir, pcsOne);
     } catch (error) {
-        console.error(new Date() + ": " + error);
-    }    
+        console.error(new Date() + " [ERROR] " + error);
+    }
 }
 
 async function write(sysInfo, curCtDir, pcsOne) {
@@ -32,7 +32,7 @@ async function write(sysInfo, curCtDir, pcsOne) {
         .floatField('Idc', pcsOne.onePcsInfoData.directCurrentArray[0] / 10);
 
     influxdb.write(point_realtimedata);
-    if(!config.suppressLog){
-        console.log(new Date() + ": Write OK");
+    if (!config.suppressLog) {
+        console.log(new Date() + " [INFO] Write OK");
     }
 }
