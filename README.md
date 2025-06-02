@@ -52,12 +52,13 @@ config.json ファイルの内容は、環境に合わせて書き換えます�
 }
 ```
 
-3. ターミナルで `$ sudo docker compose up -d influxdb2` を実行し、 InfluxDB を立ち上げます。
-ブラウザで InfluxDB にアクセスし、 config.json ファイルで指定した通りの Organization, Bucket を作成します。
-
 #  起動
 
 `$ sudo docker compose up -d` を実行すれば起動します。
+
+初回起動時などで、 config.json で指定した名前の Organization, Bucket が InfluxDB 上に存在しない場合、
+それらは自動的に作成されます。
+前もって Organization, Bucket を手動で作成しておく必要はありません。
 
 ソースコードを書き換えたとき、および config.json を書き換えたときは `$ sudo docker compose build` を実行してコンテナをビルドし直してください。
 
