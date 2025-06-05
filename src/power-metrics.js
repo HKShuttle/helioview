@@ -11,8 +11,8 @@ export async function getPowerMetrics() {
         response = await fetch(`${config.solarUrl}/asyncquery.cgi?type=PcsOne&pcsNumber=0`);
         const pcsOne = await response.json();
         await write(sysInfo, curCtDir, pcsOne);
-    } catch (error) {
-        console.error(new Date() + " [ERROR] " + error);
+    } catch (e) {
+        console.error(new Date() + " [ERROR] Failed to fetch data from PCS.");
     }
 }
 
@@ -33,6 +33,6 @@ async function write(sysInfo, curCtDir, pcsOne) {
 
     influxdb.write(point_realtimedata);
     if (!config.suppressLog) {
-        console.log(new Date() + " [INFO] Write OK");
+        console.log(new Date() + " [INFO] Write succeeded.");
     }
 }

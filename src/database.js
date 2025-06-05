@@ -67,7 +67,7 @@ export class Database {
       await new OrgsAPI(this.#client).postOrgs({ body: { name: orgName } });
       return true;
     } catch (e) {
-      console.error(new Date() + " [ERROR} " + e);
+      console.error(new Date() + " [ERROR] " + e);
       return false;
     }
   }
@@ -87,7 +87,7 @@ export class Database {
       });
       return true;
     } catch (e) {
-      console.error(new Date() + " [ERROR} " + e);
+      console.error(new Date() + " [ERROR] " + e);
       return false;
     }
   }
